@@ -1,0 +1,20 @@
+RewriteEngine On
+
+# If your application is in a subdirectory, uncomment and set the RewriteBase.
+# For example, if your app is at http://localhost/authbasic/, use:
+# RewriteBase /authbasic/
+# If your app is at the root (http://localhost/), you can often omit RewriteBase or use:
+RewriteBase /
+
+# Redirect trailing slashes to non-slashed URLs (optional, for SEO)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+# Handle requests for existing files and directories directly
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+
+# Rewrite all other requests to index.php
+RewriteRule ^(.*)$ index.php [NC,L]

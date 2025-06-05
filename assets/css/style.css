@@ -1,0 +1,355 @@
+/* Base Styles */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    line-height: 1.6;
+}
+
+main {
+    flex: 1;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* Navbar Adjustments */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: 700;
+}
+
+/* Card Styling */
+.card {
+    border: none;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+/* Form Styles */
+.form-control {
+    padding: 0.75rem 1rem;
+    border-radius: 0.375rem;
+    border: 1px solid #ced4da;
+}
+
+.form-control:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Input Group Styles */
+
+/* General .input-group-text styling (for elements like the "$" prefix)
+   Let Bootstrap handle default padding and border-radius based on position.
+   You can customize background or common border aspects here. */
+.input-group .input-group-text {
+    background-color: #e9ecef;
+    /* Bootstrap's default is #e9ecef, yours was #f8f9fa. Adjust if needed. */
+    /* color: #495057; (Bootstrap default) */
+    /* border: 1px solid #ced4da; (Bootstrap default) */
+    /* padding: 0.375rem 0.75rem; (Bootstrap default - DO NOT SET TO 0 HERE) */
+}
+
+/* Styles specifically for the .form-control when it's part of an input group.
+   Bootstrap handles rounding the correct corners by default.
+   This rule makes the left side of the input flat if it's NOT the first child (i.e., something is prepended).
+   And makes the right side flat if it's NOT the last child (i.e., something is appended).
+   Your original rule was too specific to only a prepended addon.
+*/
+.input-group>.form-control:not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.input-group>.form-control:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+
+/* Specific Styles for the Password Toggle Addon's container */
+.input-group .password-toggle-addon {
+    /* Targets the new specific class */
+    border-radius: 0 0.375rem 0.375rem 0;
+    /* Rounded corners on right, for appended element */
+    background-color: #f8f9fa;
+    /* Your custom background */
+    border: 1px solid #ced4da;
+    /* Your custom border */
+    border-left: none;
+    /* Seamless connection with input on the left */
+    padding: 0;
+    /* Remove default padding to fit button tightly */
+}
+
+/* Styles for the button *inside* the password toggle addon */
+.input-group .password-toggle-addon button {
+    color: #6c757d;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    /* Fixed width for consistency */
+    height: 100%;
+    /* Match input height */
+    background: transparent;
+    border: none;
+    /* Ensure button itself has no border */
+}
+
+.input-group .password-toggle-addon button:hover {
+    background-color: #e9ecef;
+}
+
+.input-group .password-toggle-addon button:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* Ensure invalid state styling is consistent for input-groups */
+/* When the input inside an input-group is invalid, its associated addon should also get a red border */
+.input-group .form-control.is-invalid+.input-group-text,
+/* For prepended addon */
+.input-group .form-control.is-invalid~.password-toggle-addon,
+/* For specific appended addon */
+.input-group .form-control.is-invalid~.input-group-text,
+/* For any other appended addon */
+.input-group .was-validated .form-control:invalid+.input-group-text,
+.input-group .was-validated .form-control:invalid~.password-toggle-addon,
+.input-group .was-validated .form-control:invalid~.input-group-text {
+    border-color: #dc3545;
+    /* Bootstrap's danger color */
+}
+
+/* The .input-group .form-control.is-invalid rule itself handles the input's border */
+
+
+/* Password Strength Indicator */
+.password-strength-container {
+    margin-top: 0.5rem;
+}
+
+.password-strength-text {
+    font-size: 0.875rem;
+}
+
+.progress {
+    height: 5px;
+    background-color: #e9ecef;
+}
+
+.password-strength-bar {
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+/* Validation Styles (Your existing validation icon styles are generally fine) */
+.was-validated .form-control:valid:not(.no-validation-icon),
+.form-control.is-valid:not(.no-validation-icon) {
+    border-color: #198754;
+    border-width: 1px;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.was-validated .form-control.no-validation-icon:valid,
+.form-control.no-validation-icon.is-valid {
+    border-color: #198754;
+    border-width: 1px;
+    background-image: none !important;
+}
+
+.was-validated .form-control:invalid:not(.no-validation-icon),
+.form-control.is-invalid:not(.no-validation-icon) {
+    border-color: #dc3545;
+    border-width: 1px;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.was-validated .form-control.no-validation-icon:invalid,
+.form-control.no-validation-icon.is-invalid {
+    border-color: #dc3545;
+    border-width: 1px;
+    background-image: none !important;
+}
+
+.invalid-feedback {
+    display: none;
+    font-size: 0.875rem;
+    color: #dc3545;
+    width: 100%;
+    /* Ensure it takes full width for proper placement */
+    margin-top: 0.25rem;
+}
+
+.was-validated .form-control:invalid~.invalid-feedback,
+/* For inputs directly followed by feedback */
+.form-control.is-invalid~.invalid-feedback,
+.was-validated .input-group~.invalid-feedback,
+/* For input-groups where feedback is a sibling to the group */
+.input-group.is-invalid~.invalid-feedback,
+/* If you were to add .is-invalid to the group itself */
+.was-validated .position-relative .form-control:invalid~.invalid-feedback,
+/* For inputs inside position-relative */
+.position-relative .form-control.is-invalid~.invalid-feedback {
+    display: block;
+}
+
+
+/* Button Styles */
+.btn {
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+}
+
+/* Alert Styles */
+.alert {
+    border-radius: 0.375rem;
+    padding: 1rem 1.5rem;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #212529;
+    color: #dee2e6;
+    padding: 2rem 0;
+    margin-top: auto;
+}
+
+footer a {
+    color: #adb5bd;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+footer a:hover {
+    color: #f8f9fa;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 1.5rem;
+    }
+
+    .display-4 {
+        font-size: 2.25rem;
+    }
+
+    .lead {
+        font-size: 1.1rem;
+    }
+}
+
+/* Utility Classes */
+.min-h-100 {
+    min-height: 100px;
+}
+
+/* Animation for form errors */
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20%,
+    60% {
+        transform: translateX(-5px);
+    }
+
+    40%,
+    80% {
+        transform: translateX(5px);
+    }
+}
+
+.form-control.is-invalid {
+    /* Make shake animation more specific to form-control */
+    animation: shake 0.5s ease-in-out;
+}
+
+/* Loading state for buttons */
+.btn-loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.btn-loading::after {
+    content: "";
+    display: inline-block;
+    width: 1.2rem;
+    height: 1.2rem;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: spin 0.75s linear infinite;
+    margin-left: 0.5rem;
+    vertical-align: text-bottom;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Custom checkbox for "remember me" */
+.form-check-input:checked {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+/* Special styles for auth pages */
+.auth-container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.auth-card {
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.auth-header {
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.auth-body {
+    padding: 2rem;
+}
+
+.auth-footer {
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+    text-align: center;
+}

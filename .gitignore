@@ -1,0 +1,54 @@
+# Composer
+/vendor/
+composer.lock
+
+# Log files
+/logs/*.log
+/logs/*_errors.log
+/logs/*_attempts.log
+/logs/*_requests.log
+/logs/*_changes.log
+/logs/*_submissions.log
+# !/logs/.gitkeep # Uncomment if you use .gitkeep
+
+# Environment files
+.env
+.env.local
+.env.*.local
+# If you had a .env.example and want to ensure it's *not* ignored (it should be committed)
+# !.env.example
+
+# IDE and editor specific files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+nbproject/
+*.tmproj
+.project
+.buildpath
+
+# Operating System generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# PHPUnit
+phpunit.xml
+phpunit.xml.dist
+coverage/
+build/
+
+# Miscellaneous
+*.bak
+*.swp
+*.swo
+*~
+*.tmp
+
+# Rename Namespace
+rename_namespace.php
+rename_namespace.md
+
+affiliate.md
