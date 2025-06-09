@@ -31,7 +31,20 @@ if (!$orderId || empty($newOrderStatus) || !in_array($newOrderStatus, $possible_
     redirectWithMessage('admin-order-detail?id=' . $orderId, 'danger', 'Invalid data for status update.');
 }
 
-// Call the updated function (we will modify updateOrderStatus next)
+// **New Validation Step:** Check if affiliate earnings have been finalized for this order.
+$stmt = $pdo->prepare(
+    "SELECT COUNT(*) FROM affiliate_earnings WHERE order_id = :order_id AND status IN ('cleared', 'paid')"
+);
+$stmt->execute([':order_id' => $orderId]);
+$finalized_earnings_count = $stmt->fetchColumn();
+
+if ($finalized_earnings_count > 0) {
+    redirectWithMessage('admin-order-detail?id=' . $orderId, 'danger', 'Cannot change status. Affiliate earnings for this order have already been finalized.');
+    exit;
+}
+
+
+// Call the updated function to change statuses
 if (updateOrderStatuses($pdo, $orderId, $newOrderStatus, $newPaymentStatus)) {
     redirectWithMessage('admin-order-detail?id=' . $orderId, 'success', 'Order and Payment statuses updated successfully.');
 } else {
